@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  个人战略官网 - 主页面结构说明
+  ============================================================
+  本文件是网站的「骨架」，负责：
+  1. 引入样式表 style.css 和字体
+  2. 定义各个区块的 HTML 结构（导航、Banner、各 section）
+  修改建议：
+  - 改标题：修改 <title> 里的文字
+  - （导航栏已移除；页脚仍有区块链接可点击滚动）
+  - 改某区块内容：找到对应 section（如 id="intro"）在内部改文字或结构
+  - 新增区块：复制一个 <section>...</section> 改 id、class 和内容
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+    <!-- 字符编码：必须为 UTF-8，否则中文可能乱码 -->
+    <meta charset="UTF-8">
+    <!-- 视口：让手机也能正确缩放，不写的话移动端会显示成缩小版电脑页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 浏览器标签页上显示的文字，也是搜索引擎会用的标题 -->
+    <title>个人战略 - 每个人的人生都需要一场战略</title>
+    <!-- 引入我们的样式文件，所有颜色、间距、布局都在 style.css 里 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 预连接字体服务器，加快字体加载 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 谷歌字体：思源宋体(标题用) + 思源黑体(正文用)，可换其他字体需改 style.css 里的 font-family -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏已移除；用户可通过 Banner 的「立即预约」、页脚链接等点击滚动到各区块 -->
+
+    <!-- ==================== Banner 首屏大图 ====================
+         打开页面第一眼看到的区域，全屏高度、红橙渐变背景。
+         - .banner-bg：背景装饰层（渐变、动画在 CSS 里写）
+         - .banner-content：中间的主标题、副标题、按钮
+         - .banner-title：主标题，<br> 表示这里换行
+         - .banner-subtitle：副标题
+         - .cta-button：主行动按钮，href="#booking" 表示点击后跳到预约区块
+         - .scroll-indicator：底部「向下滚动」的提示
+         改文案：直接改 banner-title、banner-subtitle 里的文字即可 -->
+    <section class="banner">
+        <div class="banner-bg"></div>
+        <div class="banner-content">
+            <h1 class="banner-title">每个人的人生<br>都需要一场战略</h1>
+            <p class="banner-subtitle">春节特别版 | 开启你的个人战略之旅</p>
+            <a href="#booking" class="cta-button">
+                <span>立即预约直播</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10h12m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <span>向下滚动探索</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14m-7-7l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 项目简介 ====================
+         id="intro" 很重要：导航里 href="#intro" 会滚到这里。
+         class="section-animate"：滚动到这个区块时会淡入上移（在 script.js 里用 IntersectionObserver 控制）
+         - .container：限制最大宽度并居中，全站通用
+         - .section-header / .section-title / .section-decoration：区块标题样式
+         - .intro-lead：核心理念 + 一段介绍
+         - .intro-tagline：红色大字一句（可单独改）
+         - .intro-description：下面那段长文案
+         - .intro-subtitle：小标题「缘起和里程碑」
+         - .intro-milestones：时间线列表，每条 .milestone-item 里 .milestone-date 是日期、.milestone-text 是内容
+         - .intro-stats：三个数据卡片，data-number 是最终数字（JS 会做从 0 滚到该数的动画）
+         - .intro-summary：总结段
+         - .intro-footer：底部两段话，.intro-cta 是最后一句红色强调 -->
+    <section id="intro" class="intro section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">项目简介</h2>
+                <div class="section-decoration"></div>
+            </div>
+            
+            <div class="intro-lead">
+                <p class="intro-tagline">把握人生战略主动</p>
+                <p class="intro-description">
+                    个人战略是一套将企业战略思维迁移到个人发展中的成长体系。我们跳出传统碎片化目标规划的局限，以系统化的理念、可落地的方法和社群化的陪伴，帮助普通人从「被生活推着走」的被动状态，转向「清晰定方向」的战略主动人生。
+                </p>
+            </div>
+            
+            <h3 class="intro-subtitle">缘起和里程碑</h3>
+            <div class="intro-milestones">
+                <div class="milestone-item">
+                    <time class="milestone-date">2021年1月1日</time>
+                    <p class="milestone-text">润泽园正式启动阳明心学与个人战略课程，助力<strong>10万余名</strong>学员开启十年人生蓝图。</p>
+                </div>
+                <div class="milestone-item">
+                    <time class="milestone-date">2025年7月</time>
+                    <p class="milestone-text">润泽园4.0战略将个人战略列为关键篇章，百日内引领<strong>1.5万名</strong>企业经营者与管理者制定专属战略。</p>
+                </div>
+                <div class="milestone-item">
+                    <time class="milestone-date">2025年12月21日</time>
+                    <p class="milestone-text">个人战略万人大会温暖开启：线下<strong>5000余人</strong>齐聚一堂，线上超<strong>1万人</strong>云端同行，共绘个人战略。</p>
+                </div>
+                <div class="milestone-item">
+                    <time class="milestone-date">2026年初至今</time>
+                    <p class="milestone-text">通过系列主题会议与深度交流，个人战略持续触达超<strong>2万人次</strong>，点燃成长的星星之火。</p>
+                </div>
+            </div>
+            
+            <!-- 数据卡片：改数字就改 data-number（如 150000），改说明改 .stat-label 文字；.stat-number 初始写 0，JS 会动画变成 data-number -->
+            <div class="intro-stats">
+                <div class="stat-item" data-number="150000">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">接触个人战略的人数</div>
+                </div>
+                <div class="stat-item" data-number="100000">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">开启十年人生蓝图的人数</div>
+                </div>
+                <div class="stat-item" data-number="5000">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">线下参与大会的人数</div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="intro-footer">
+                <p>无论你什么年龄、什么职业、什么身份，每个人都能拥有一份自己的个人战略。</p>
+                <p class="intro-cta">因为人生不只是一场修炼，更是一场盛宴！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 视频故事（左右滑动） ====================
+         - .video-stories-wrap：整块滑动区域的外层，里面有左箭头、轨道、右箭头
+         - .video-stories-prev / .video-stories-next：左/右箭头按钮，JS 里会绑定点击滚动
+         - #videoStoriesTrack：可横向滚动的轨道，里面是一排 .video-card
+         - 每个 .video-card：一张视频卡片；.video-badge 是「精选推荐」角标，.video-tag 是「事业篇」「青年篇·TED」小标签
+         - .video-player：点击区域，目前是占位；接真实视频时可在里加 data-video-url 或改 script.js 的 initVideoPlayers
+         增删视频：复制/删除一整块 <div class="video-card">...</div>，底部圆点由 JS 按卡片数量自动生成 -->
+    <section id="videos" class="videos section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">视频故事</h2>
+                <p class="section-subtitle">通过真实案例和分享，了解个人战略如何改变人生轨迹 · 左右滑动浏览更多</p>
+            </div>
+            
+            <div class="video-stories-wrap">
+                <button type="button" class="video-stories-btn video-stories-prev" aria-label="上一个故事">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="video-stories-track" id="videoStoriesTrack">
+                    <!-- 中国式青春 -->
+                    <div class="video-card">
+                        <div class="video-badge">精选推荐</div>
+                        <h3>中国式青春——个人战略</h3>
+                        <p>讲述亚东的个人战略故事，展现中国式青春的奋斗与成长。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 子女篇 -->
+                    <div class="video-card">
+                        <h3>子女篇——从少年到青年</h3>
+                        <p>6岁小女小葡萄的个人战略之旅，从小培养战略思维。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 事业篇 - 林韵 -->
+                    <div class="video-card">
+                        <span class="video-tag">事业篇</span>
+                        <h3>身障人士 · 林韵</h3>
+                        <p>00后青年在强脑科技的个人战略实践。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 事业篇 - 张胜男 -->
+                    <div class="video-card">
+                        <span class="video-tag">事业篇</span>
+                        <h3>强脑科技创始成员 · 张胜男</h3>
+                        <p>强脑科技核心成员的个人战略故事。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 事业篇 - 安慧敏 -->
+                    <div class="video-card">
+                        <span class="video-tag">事业篇</span>
+                        <h3>中年创业者 · 安慧敏</h3>
+                        <p>中年创业者的个人战略与事业突破。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 健康篇 -->
+                    <div class="video-card">
+                        <span class="video-tag">健康篇</span>
+                        <h3>企业家个人健康战略</h3>
+                        <p>孙多利的健康战略实践与转变。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 家庭篇 -->
+                    <div class="video-card">
+                        <span class="video-tag">家庭篇</span>
+                        <h3>长者的个人战略（对话）</h3>
+                        <p>邱延忠：长者的个人战略与生命智慧。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 青年篇 - 西蒙 -->
+                    <div class="video-card">
+                        <span class="video-tag">青年篇 · TED</span>
+                        <h3>西蒙</h3>
+                        <p>青年个人战略 TED 分享。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 青年篇 - 子运 -->
+                    <div class="video-card">
+                        <span class="video-tag">青年篇 · TED</span>
+                        <h3>子运</h3>
+                        <p>青年个人战略 TED 分享。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 青年篇 - 超文 -->
+                    <div class="video-card">
+                        <span class="video-tag">青年篇 · TED</span>
+                        <h3>超文</h3>
+                        <p>青年个人战略 TED 分享。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 青年篇 - 王颖 -->
+                    <div class="video-card">
+                        <span class="video-tag">青年篇 · TED</span>
+                        <h3>王颖</h3>
+                        <p>青年个人战略 TED 分享。</p>
+                        <div class="video-player">
+                            <div class="video-placeholder">
+                                <div class="play-button">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="currentColor" opacity="0.9"/>
+                                        <path d="M24 18l18 12-18 12V18z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span>点击播放视频</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="video-stories-btn video-stories-next" aria-label="下一个故事">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- 圆点导航容器：空 div 即可，script.js 的 initVideoStoriesSlider 会根据卡片数量自动生成圆点 -->
+            <div class="video-stories-dots" id="videoStoriesDots" role="tablist" aria-label="视频故事导航"></div>
+        </div>
+    </section>
+
+    <!-- ==================== 相关文章 ====================
+         文章标题列表，点击跳转公众号链接（target="_blank" 新窗口打开） -->
+    <!-- 相关文章 -->
+    <section id="articles" class="articles section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">相关文章</h2>
+                <p class="section-subtitle">点击标题跳转阅读全文</p>
+            </div>
+            
+            <ul class="article-list">
+                <li><a href="https://mp.weixin.qq.com/s/dJ4P9ynlvEXccCm8FgB-pA" target="_blank" rel="noopener noreferrer" class="article-link-item">为什么每个人都需要个人战略？</a></li>
+                <li><a href="https://mp.weixin.qq.com/s/SGgtLAxW5mGMTuJi9aYOEw" target="_blank" rel="noopener noreferrer" class="article-link-item">冬至一阳生：上万份个人战略，正在破土而出</a></li>
+                <li><a href="https://mp.weixin.qq.com/s/gM54zvW_138BCzHhBW2QHw" target="_blank" rel="noopener noreferrer" class="article-link-item">企业的天花板，就是董事长的天花板</a></li>
+                <li><a href="https://mp.weixin.qq.com/s/WKpHjYs1lmlz6oFOCm46Gg" target="_blank" rel="noopener noreferrer" class="article-link-item">你的人生，需要一份"个人战略"</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ==================== 案例展示 ====================
+         .case-grid 里多个 .case-item，每个有 .case-number（右上角大号 01/02…）、h3、p、.case-tag 标签
+         增删案例：复制/删一整块 .case-item，记得改 .case-number 为 01～06 等 -->
+    <!-- 案例展示 -->
+    <section id="cases" class="cases section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">案例展示</h2>
+                <p class="section-subtitle">真实改变，真实影响</p>
+            </div>
+            
+            <div class="case-grid">
+                <div class="case-item">
+                    <div class="case-number">01</div>
+                    <h3>职场突破</h3>
+                    <p>通过个人战略规划，成功从基层员工晋升为部门主管，实现职业生涯的重大突破。</p>
+                    <div class="case-tag">事业发展</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">02</div>
+                    <h3>健康转型</h3>
+                    <p>制定健康战略后，体重减少30斤，养成了坚持运动的好习惯，整个人焕然一新。</p>
+                    <div class="case-tag">健康管理</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">03</div>
+                    <h3>家庭和谐</h3>
+                    <p>运用个人战略方法改善亲子关系，建立了更加和谐温暖的家庭氛围。</p>
+                    <div class="case-tag">家庭关系</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">04</div>
+                    <h3>创业成功</h3>
+                    <p>从迷茫到清晰，通过战略规划找到创业方向，一年内实现盈利目标。</p>
+                    <div class="case-tag">创业创新</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">05</div>
+                    <h3>学业进步</h3>
+                    <p>青年学生制定学习战略，成绩从中游提升到年级前十，成功考入理想大学。</p>
+                    <div class="case-tag">青年成长</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">06</div>
+                    <h3>财富增长</h3>
+                    <p>建立财务战略规划，三年内实现资产翻倍，为未来生活奠定坚实基础。</p>
+                    <div class="case-tag">财富管理</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">07</div>
+                    <h3>关系修复</h3>
+                    <p>用个人战略思维梳理人际关系，与多年未联系的老友重归于好，家庭与社交质量明显提升。</p>
+                    <div class="case-tag">人际成长</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">08</div>
+                    <h3>副业起步</h3>
+                    <p>在主业稳定后，用战略规划厘清副业方向，半年内副业收入覆盖兴趣投入，实现斜杠发展。</p>
+                    <div class="case-tag">多元发展</div>
+                </div>
+                
+                <div class="case-item">
+                    <div class="case-number">09</div>
+                    <h3>心态蜕变</h3>
+                    <p>从焦虑内耗到从容笃定，个人战略帮助建立内在秩序，情绪更稳定，决策更清晰。</p>
+                    <div class="case-tag">内在成长</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 用户心得（轮播） ====================
+         .testimonial-slider 里多条 .testimonial，带 .active 的那条会显示（JS 轮播切换）
+         每条里有 .testimonial-quote（大引号）、.testimonial-text、.testimonial-author（头像 .author-avatar + 姓名 .author-name + 身份 .author-title）
+         .testimonial-controls 里三个 .testimonial-dot，对应三条心得；点圆点或自动 5 秒切换
+         增删心得：复制/删一条 .testimonial，并同步增删一个 .testimonial-dot -->
+    <!-- 用户心得 -->
+    <section id="testimonials" class="testimonials section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">用户心得</h2>
+                <p class="section-subtitle">听听他们的真实反馈，了解个人战略带来的改变</p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial active">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-text">个人战略彻底改变了我的人生轨迹，让我从迷茫中找到了方向，现在我对未来充满信心。不只是工作，连家庭和健康我也开始有意识地规划了。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">李</div>
+                            <div class="author-info">
+                                <div class="author-name">李明</div>
+                                <div class="author-title">企业中层管理者</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-text">通过个人战略规划，我不仅在事业上取得了突破，还改善了家庭关系，实现了工作与生活的平衡。以前总觉得「平衡」是奢望，现在发现有了战略，真的可以一步步靠近。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">王</div>
+                            <div class="author-info">
+                                <div class="author-name">王芳</div>
+                                <div class="author-title">创业者</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-text">个人战略让我明白了自己真正想要的是什么，帮助我制定了清晰的目标和行动计划，现在我正在一步步实现我的梦想。身边的朋友都说我整个人状态不一样了。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">张</div>
+                            <div class="author-info">
+                                <div class="author-name">张伟</div>
+                                <div class="author-title">青年教师</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-text">以前总是忙却不知道在忙什么。做完个人战略之后，我学会了做减法，把精力放在真正重要的事上，效率反而提高了，生活也轻松了很多。强烈推荐给每一个感到迷茫的人。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">陈</div>
+                            <div class="author-info">
+                                <div class="author-name">陈静</div>
+                                <div class="author-title">互联网从业者</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-text">我带着孩子一起做个人战略，不仅自己的方向清晰了，孩子也学会了用「战略思维」想问题。现在家里经常一起复盘、一起规划，感觉全家都在往同一个方向走。这是送给家人最好的礼物。</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">刘</div>
+                            <div class="author-info">
+                                <div class="author-name">刘敏</div>
+                                <div class="author-title">家长</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-controls">
+                    <button class="testimonial-dot active" data-index="0"></button>
+                    <button class="testimonial-dot" data-index="1"></button>
+                    <button class="testimonial-dot" data-index="2"></button>
+                    <button class="testimonial-dot" data-index="3"></button>
+                    <button class="testimonial-dot" data-index="4"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 预约直播 ====================
+         id="booking" 供导航和 CTA 按钮跳转。
+         - .booking-form 的 id="bookingForm"：JS 里 initBookingForm 会绑定提交、校验（姓名、手机 11 位、必选领域）
+         - 表单项：id="name" / id="phone" / id="interest"，改 placeholder 或选项在对应 input/select 里改
+         - .btn-submit：提交按钮；.form-success 是提交成功后显示的那段话（默认隐藏，JS 提交成功后会 .show）
+         接真实后端：在 script.js 的 form submit 里把「模拟请求」换成 fetch 你的接口 -->
+    <!-- 预约直播 -->
+    <section id="booking" class="booking section-animate">
+        <div class="booking-bg"></div>
+        <div class="container">
+            <div class="booking-content">
+                <div class="booking-header">
+                    <h2>预约：2月25日年后直播</h2>
+                    <p>参与我们的线上直播，了解个人战略的核心概念和实践方法，与专家互动交流。</p>
+                </div>
+                
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">
+                                <span class="label-icon">👤</span>
+                                姓名
+                            </label>
+                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                            <span class="form-error">请输入您的姓名</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">
+                                <span class="label-icon">📱</span>
+                                手机号码
+                            </label>
+                            <input type="tel" id="phone" name="phone" placeholder="请输入11位手机号码" pattern="[0-9]{11}" required>
+                            <span class="form-error">请输入正确的手机号码</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">
+                            <span class="label-icon">🎯</span>
+                            感兴趣的领域
+                        </label>
+                        <!-- 下拉选项：value 是提交给后端用的值，可改；中间文字是用户看到的，可随意改 -->
+                        <select id="interest" name="interest" required>
+                            <option value="">请选择...</option>
+                            <option value="career">事业发展</option>
+                            <option value="health">健康管理</option>
+                            <option value="family">家庭关系</option>
+                            <option value="youth">青年成长</option>
+                            <option value="other">其他</option>
+                        </select>
+                        <span class="form-error">请选择感兴趣的领域</span>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <span class="btn-text">立即预约</span>
+                        <span class="btn-loading">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                <path d="M10 2a8 8 0 0 1 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                    </button>
+                    
+                    <div class="form-success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 12l2.5 2.5 5.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <p>预约成功！我们会在直播前与您联系。</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 愿景使命（大字版） ====================
+         三块纵向排列：每块 .vision-block 里 .vision-label 是小标签（使命/愿景/十年画面），.vision-statement 是大字正文
+         .vision-quote 是十年画面那句，略小一点；.en 包住英文可单独设字体/斜体（在 style.css 里） -->
+    <!-- 愿景使命（大字版） -->
+    <section id="vision" class="vision section-animate">
+        <div class="vision-bg"></div>
+        <div class="container vision-container">
+            <div class="vision-block vision-mission">
+                <span class="vision-label">使命</span>
+                <p class="vision-statement">成就他人活出想要的模样</p>
+            </div>
+            <div class="vision-block vision-vision">
+                <span class="vision-label">愿景</span>
+                <p class="vision-statement">每个人的生命焕然一新</p>
+            </div>
+            <div class="vision-block vision-decade">
+                <span class="vision-label">十年画面</span>
+                <p class="vision-statement vision-quote">中国有我们，没有我们，<span class="en">Make A Difference!</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 志愿者招募 ====================
+         .volunteer-benefits 里四个 .benefit-item（专业培训、人脉拓展、学习机会、实践平台）
+         .btn-volunteer 的 href 可改成报名页链接 -->
+    <!-- 志愿者招募 -->
+    <section id="volunteers" class="volunteers section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">支援者招募</h2>
+                <p class="section-subtitle">加入我们的团队，成为个人战略的传播者和实践者，让个人战略迈向星辰大海</p>
+            </div>
+            
+            <p class="volunteers-intro">成为星辰200，你将获得：</p>
+            
+            <div class="volunteer-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏕️</div>
+                    <h3>专属小范围训练营</h3>
+                    <p>参与专属的小范围训练营，与同频伙伴深度共学、实践个人战略</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>核心产品共创机会</h3>
+                    <p>获得核心产品共创的机会，与团队一起打磨个人战略的方法与内容</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✨</div>
+                    <h3>最新方法论优先体验</h3>
+                    <p>优先参与最新方法论的体验与内测，第一时间接触个人战略的前沿实践</p>
+                </div>
+            </div>
+            
+            <div class="volunteers-qr-wrap">
+                <p class="volunteers-qr-title">报名星辰200 · 扫码加入</p>
+                <div class="volunteers-qr-placeholder">
+                    <!-- 请将下方 src 替换为你的报名二维码图片地址；若无图片可暂时保留此占位 -->
+                    <img src="qrcode-join.png" alt="报名星辰200二维码" class="volunteers-qr-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';">
+                    <span class="volunteers-qr-fallback">请替换为报名星辰200的二维码图片<br>（图片路径：qrcode-join.png）</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ====================
+         .footer-brand：品牌名 + 一句话
+         .footer-links 三列：快速导航、了解更多、联系我们；每个 .footer-column 里 h4 是列标题，ul li a 是链接
+         .footer-social：关注我们 + 社交图标，每个 a 的 href 可改成微信/微博/抖音/B站链接
+         .footer-bottom：版权文字，可改年份或公司名 -->
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🎯</span>
+                        <span class="logo-text">个人战略</span>
+                    </div>
+                    <p>让每个人都能制定并执行属于自己的个人战略</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>快速导航</h4>
+                        <ul>
+                            <li><a href="#intro">项目简介</a></li>
+                            <li><a href="#videos">视频故事</a></li>
+                            <li><a href="#cases">案例展示</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>了解更多</h4>
+                        <ul>
+                            <li><a href="#articles">相关文章</a></li>
+                            <li><a href="#testimonials">用户心得</a></li>
+                            <li><a href="#vision">愿景使命</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>联系我们</h4>
+                        <ul>
+                            <li><a href="mailto:contact@personalstrategy.com">contact@personalstrategy.com</a></li>
+                            <li><a href="#booking">预约直播</a></li>
+                            <li><a href="#volunteers">加入我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 个人战略项目. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部：固定右下角，滚动超过约 500px 时显示，点击平滑滚到顶部（script.js 的 initBackToTop） -->
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" aria-label="返回顶部">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 19V5m-7 7l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+    <!-- 引入 JavaScript：所有交互（导航、滚动动画、表单、轮播、视频滑动等）都在 script.js 里 -->
+    <script src="script.js"></script>
+</body>
+</html>
