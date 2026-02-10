@@ -139,7 +139,10 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-primary);
+    background-color: var(--primary-red);
+    background-image: url('icon/main-BG.png');
+    background-size: cover;
+    background-position: center;
     color: white;
     overflow: hidden;
     padding: var(--spacing-xl) var(--spacing-md);
@@ -176,17 +179,23 @@ ul {
 }
 
 .banner-title {
-    font-family: 'Noto Serif SC', serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 900;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
     animation: fadeInUp 0.8s ease-out;
-    line-height: 1.2;
+    line-height: 0;
+}
+
+.banner-title-img {
+    display: block;
+    max-width: min(90vw, 720px);
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
 .banner-subtitle {
     font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin-top: 7rem;
     margin-bottom: 3rem;
     opacity: 0.95;
     animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -510,6 +519,60 @@ section {
     margin-top: 0.5rem !important;
 }
 
+/* ==================== 金句模块：与 Banner 同款渐变 + 光斑浮动，白字 ==================== */
+.intro-quote {
+    padding: 1rem var(--spacing-md);
+    background: var(--gradient-primary);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 与 .banner-bg 同款：两层径向渐变光斑 + 浮动动画 */
+.intro-quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 30%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.intro-quote-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+}
+
+.intro-quote-main,
+.intro-quote-cta {
+    font-family: inherit;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.intro-quote-main {
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0 0 0.5rem;
+}
+
+.intro-quote-cta {
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+}
+
 /* ==================== 视频故事（左右滑动） ====================
    .video-stories-track：flex + overflow-x: auto 实现横向滚动；
    scroll-snap-type: x mandatory 让滚动时按「一张卡片」对齐。
@@ -611,10 +674,24 @@ section {
     width: 100%;
     aspect-ratio: 16/9;
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    background-size: cover;
+    background-position: center;
     border-radius: var(--radius-md);
     overflow: hidden;
     cursor: pointer;
     transition: all var(--transition-base);
+}
+
+/* 有预览图时：图片放大一些更明显，轻微遮罩不抢画面 */
+.video-player[style*="background-image"] {
+    background-size: 115%;
+    background-position: center;
+}
+.video-player[style*="background-image"]:hover {
+    background-size: 125%;
+}
+.video-player[style*="background-image"] .video-placeholder {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, transparent 50%);
 }
 
 .video-player:hover {
@@ -622,6 +699,7 @@ section {
 }
 
 .video-placeholder {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -630,9 +708,19 @@ section {
     gap: 0.75rem;
 }
 
+/* 播放按钮：右下角、小尺寸 */
 .play-button {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 40px;
+    height: 40px;
     color: var(--primary-red);
     transition: all var(--transition-base);
+}
+.play-button svg {
+    width: 100%;
+    height: 100%;
 }
 
 .video-player:hover .play-button {
@@ -640,8 +728,7 @@ section {
 }
 
 .video-placeholder span {
-    color: var(--color-text-lighter);
-    font-size: 0.9rem;
+    display: none; /* 不再显示「点击播放视频」 */
 }
 
 /* 左右箭头按钮 */
@@ -763,6 +850,44 @@ section {
     background-color: var(--color-bg);
 }
 
+/* 个人战略案例集：明显可点击入口 */
+.case-collection-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.75rem;
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(140, 40, 198, 0.215) 0%, rgba(30, 37, 244, 0.122) 100%);
+    border: 2px solid rgba(120, 21, 200, 0.464);
+    border-radius: var(--radius-lg);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+.case-collection-cta:hover {
+    background: linear-gradient(135deg, rgba(198, 40, 40, 0.18) 0%, rgba(244, 81, 30, 0.12) 100%);
+    border-color: var(--primary-red);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.case-collection-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-red);
+}
+.case-collection-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin-right: auto;
+    margin-left: 0.5rem;
+}
+.case-collection-arrow {
+    flex-shrink: 0;
+    color: var(--primary-red);
+}
+
 .case-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -849,7 +974,7 @@ section {
     transform: translateX(100px);
     transition: all 0.6s ease;
     pointer-events: none;
-    background: linear-gradient(135deg, rgba(198, 40, 40, 0.03), rgba(244, 81, 30, 0.03));
+    background: linear-gradient(135deg, rgba(123, 26, 187, 0.03), rgba(123, 26, 187, 0.03));
     padding: 3rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -1235,9 +1360,9 @@ section {
     width: 200px;
     height: 200px;
     background: var(--color-bg);
-    border: 2px dashed var(--color-border);
     border-radius: var(--radius-md);
     position: relative;
+    overflow: hidden;
 }
 
 .volunteers-qr-img {
@@ -1582,8 +1707,8 @@ section {
         padding: 0 var(--spacing-sm);
     }
     
-    .banner-title {
-        font-size: 2rem;
+    .banner-title-img {
+        max-width: min(92vw, 520px);
     }
     
     .stat-number {
